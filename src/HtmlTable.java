@@ -50,7 +50,8 @@ public class HtmlTable extends Component {
 
     private String head() {
         String tagName = "head";
-        return openAndCloseTag(tagName, title() + "\n");
+        String headElements = this.title() + "\n";
+        return openAndCloseTag(tagName, headElements);
     }
 
     private String title() {
@@ -79,7 +80,7 @@ public class HtmlTable extends Component {
 
     private String trh() {
         String tagName = "tr";
-        String rowElements = th("Id") + th("First name") + th("Middle name") + th("Last name") + th("Phone number") + "\n";
+        String rowElements = this.th("Id") + this.th("First name") + this.th("Middle name") + this.th("Last name") + this.th("Phone number") + "\n";
         return openAndCloseTag(tagName, rowElements);
     }
 
