@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +9,8 @@ public class HtmlTable extends Component {
     public List<Model> readValues() {
 
         Connection connection;
-        Statement statement;
-        ResultSet rs;
+        Statement statement = null;
+        ResultSet rs = null;
         List<Model> modelList = new ArrayList<>();
 
         PostgresSQLConnect obj_ConnectDB = new PostgresSQLConnect();
@@ -33,6 +34,16 @@ public class HtmlTable extends Component {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                    assert rs != null;
+                    rs.close();
+                    statement.close();
+                    connection.close();
+                    System.out.println("connection closed");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         return modelList;
